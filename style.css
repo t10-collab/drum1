@@ -1,1 +1,202 @@
+:root {
+    --bg-gradient-start: #fdfbfb;
+    --bg-gradient-end: #ebedee;
+    --card-bg: #ffffff;
+    --text-main: #4a5568;
+    
+    /* 음표별 파스텔 색상 매칭 */
+    --p-4n: #ffb7b2;    /* 4분음표 (살구빛 핑크) */
+    --p-8n: #b5ead7;    /* 8분음표 1개 (민트 그린) */
+    --p-8-8: #e2f0cb;   /* 8분음표 2개 (연두빛 그린) */
+    --p-16n: #e0bbe4;   /* 16분음표 2개 (은은한 라벤더) */
+    
+    --btn-play: #95d5b2;
+    --btn-reset: #f08080;
+    --active-border: #ffcf4d;
+}
 
+body {
+    background-image: linear-gradient(120deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    color: var(--text-main);
+    font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: var(--card-bg);
+    padding: 35px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    width: 90%;
+    max-width: 750px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: #5c6b73;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* 속도 조절 스타일 */
+.tempo-control-container {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #e2e8f0;
+}
+
+.tempo-control-container label {
+    font-weight: bold;
+    color: #718096;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+
+input[type="range"] {
+    width: 60%;
+    accent-color: var(--btn-play);
+    cursor: pointer;
+}
+
+.current-bpm-display {
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#bpm-value {
+    color: var(--btn-reset);
+}
+
+/* 박자 상태창 */
+.beat-status {
+    background: #edf2f7;
+    padding: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #4a5568;
+}
+
+/* 음표 선택 영역 */
+.note-palette {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.note-item {
+    border: none;
+    border-radius: 18px;
+    padding: 15px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.note-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.06);
+}
+
+.note-item:active { transform: scale(0.97); }
+
+.n1 { background-color: var(--p-4n); }
+.n2 { background-color: var(--p-8n); }
+.n3 { background-color: var(--p-8-8); }
+.n4 { background-color: var(--p-16n); }
+
+.note-img {
+    font-size: 3.5rem;
+    color: #2d3748;
+    margin-bottom: 5px;
+}
+
+.note-item span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* 창작 공간 */
+.workspace {
+    margin: 30px 0;
+    padding: 20px;
+    min-height: 110px;
+    background: #f8fafc;
+    border: 3px dashed #cbd5e1;
+    border-radius: 20px;
+}
+
+.sequence-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* 배치된 음표 스타일 */
+.placed-note {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 2.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+    border: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    height: 60px;
+}
+
+/* 재생 시 노랗게 반짝이는 애니메이션 효과 */
+.active-note {
+    border-color: var(--active-border) !important;
+    background: #fffdf5 !important;
+    transform: scale(1.08);
+    transition: all 0.1s;
+}
+
+/* 하단 연주 버튼 */
+.controls {
+    margin-top: 15px;
+}
+
+.btn {
+    padding: 15px 35px;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    margin: 0 8px;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.play-btn { background: var(--btn-play); box-shadow: 0 4px 12px rgba(149, 213, 178, 0.3); }
+.play-btn:hover { background: #81c7a1; }
+
+.reset-btn { background: var(--btn-reset); box-shadow: 0 4px 12px rgba(240, 128, 128, 0.3); }
+.reset-btn:hover { background: #e57373; }
+
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn:active { transform: scale(0.95); }
